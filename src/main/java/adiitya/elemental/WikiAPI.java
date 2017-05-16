@@ -27,10 +27,6 @@ public class WikiAPI {
 
 		// create a BufferedReader from the response InputStream
 		BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-		
-		// close client and response
-		response.close();
-		client.close();
 
 		// prepare for reading payload
 		StringBuilder builder = new StringBuilder();
@@ -65,10 +61,6 @@ public class WikiAPI {
 
 		// create a BufferedReader from the response InputStream
 		BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-
-		// close client and response
-		response.close();
-		client.close();
 		
 		// prepare for reading payload
 		StringBuilder builder = new StringBuilder();
@@ -80,7 +72,6 @@ public class WikiAPI {
 		
 		// close BufferedReader
 		br.close();
-		
 		
 		// create parser
 		String s = builder.toString();

@@ -4,6 +4,7 @@ import adiitya.elemental.cmd.ElementCommand;
 import adiitya.elemental.cmd.ElementTestCommand;
 import adiitya.elemental.cmd.ElementsCommand;
 import adiitya.elemental.cmd.FactCommand;
+import adiitya.elemental.cmd.HelpCommand;
 import adiitya.elemental.cmd.TableCommand;
 import adiitya.elemental.elements.Elements;
 import de.btobastian.sdcf4j.CommandHandler;
@@ -29,6 +30,7 @@ public class Elemental {
 		handler.registerCommand(new ElementTestCommand());
 		handler.registerCommand(new ElementsCommand());
 		handler.registerCommand(new FactCommand());
+		handler.registerCommand(new HelpCommand());
 		
 		// initialize elements
 		Elements.init();

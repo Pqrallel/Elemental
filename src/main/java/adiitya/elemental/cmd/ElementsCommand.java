@@ -6,7 +6,7 @@ import de.btobastian.sdcf4j.CommandExecutor;
 
 public class ElementsCommand implements CommandExecutor {
 
-	@Command(aliases = {"!elements", "!els"})
+	@Command(aliases = {"!elements", "!els"}, usage = "!elements")
 	public String execute() {
 		
 		String elements = "";

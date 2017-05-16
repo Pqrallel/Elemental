@@ -6,7 +6,7 @@ import de.btobastian.sdcf4j.CommandExecutor;
 
 public class ElementTestCommand implements CommandExecutor {
 
-	@Command(aliases = {"!test"})
+	@Command(aliases = {"!test"}, usage = "!test <element>")
 	public String execute(String[] args) {
 		
 		if (args.length < 1)

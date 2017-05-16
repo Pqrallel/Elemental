@@ -9,7 +9,7 @@ A discord bot based around the periodic table. Made for my friend's discord serv
 	* Usage: ~help
 *	!element
 	* Aliases: !el
-	* Usage: !element <element>
+	* Usage: !element `` `<element>` ``
 	* Description: Sends a link to a wikipedia pake on the specified element
 *	!elements
 	* Aliases: !els
@@ -20,8 +20,7 @@ A discord bot based around the periodic table. Made for my friend's discord serv
 	* Description: Sends an image of the periodical table
 *	!fact
 	* Aliases: !f
-	* Usage: !fact <element>
+	* Usage: !fact `` `<element>` ``
 	* Description: Sends a fact about the specified element
 *	!test
-	* Usage: !test <element>
-	*Description: Tests wether or not you entered an element name, symbol, or an invalid string
+	* Usage: !test `` `<element>` ``

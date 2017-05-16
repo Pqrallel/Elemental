@@ -10,7 +10,7 @@ A discord bot based around the periodic table. Made for my friend's discord serv
 *	`` !element ``
 	* Aliases: `` !el ``
 	* Usage: `` !element <element> ``
-	* Description: Sends a link to a wikipedia pake on the specified element
+	* Description: Sends a link to a wikipedia page on the specified element
 *	`` !elements ``
 	* Aliases: `` !els ``
 	* Usage: `` !elements ``

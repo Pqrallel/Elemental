@@ -1,8 +1,8 @@
 package adiitya.elemental.cmd;
 
 import adiitya.elemental.Elemental;
-import adiitya.elemental.WikiAPI;
-import adiitya.elemental.elements.Elements;
+import adiitya.elemental.api.WikiAPI;
+import adiitya.elemental.elements.EnumElements;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import sx.blah.discord.handle.obj.IChannel;
@@ -18,10 +18,9 @@ public class ElementCommand implements CommandExecutor {
 
 		String url = "";
 		String id = "";
-		int type = Elements.getType(args[0]);
-		String element = Elements.getElementName(type, args[0]);
+		String element = EnumElements.getElementName(args[0]);
 
-		if (Elements.isElement(element)) {
+		if (EnumElements.isElement(element)) {
 		
 			try {
 				id = WikiAPI.requestPageId(element, c);

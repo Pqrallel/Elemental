@@ -7,6 +7,7 @@ import java.net.URL;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import adiitya.elemental.Elemental;
 import sx.blah.discord.handle.obj.IChannel;
 
 public class WikiAPI {
@@ -15,6 +16,11 @@ public class WikiAPI {
 	
 	public static String requestPageId(String title, IChannel c) throws Exception {
 
+		if (Elemental.cache.containsKey(title)) {
+			
+			return Elemental.cache.get(title);
+		}
+		
 		WikiBuilder b = new WikiBuilder();
 
 		URL url = b.addModule(b.ACTION_QUERY).addModule(b.FORMAT_JSON).addModule(b.new Module("titles", title))
@@ -24,11 +30,19 @@ public class WikiAPI {
 
 		JsonObject o = parser.parse(new InputStreamReader(con.getInputStream())).getAsJsonObject();
 		
-		return ("" + o.get("query").getAsJsonObject().get("pages")).split("\"")[1];
+		String value = ("" + o.get("query").getAsJsonObject().get("pages")).split("\"")[1];
+		Elemental.cache.put(title, value);
+		
+		return value;
 	}
 
 	public static String requestPageUrl(String id) throws Exception {
 
+		if (Elemental.cache.containsKey(id)) {
+		
+			return Elemental.cache.get(id);
+		}
+		
 		WikiBuilder b = new WikiBuilder();
 
 		URL url = b.addModule(b.ACTION_QUERY).addModule(b.FORMAT_JSON).addModule(b.new Module("prop", "info"))
@@ -38,7 +52,10 @@ public class WikiAPI {
 		
 		JsonObject o = parser.parse(new InputStreamReader(con.getInputStream())).getAsJsonObject();
 		
-		return ("" + o.get("query").getAsJsonObject().get("pages").getAsJsonObject().get(id).getAsJsonObject().get("fullurl")).replaceAll("\"", "");
+		String value = ("" + o.get("query").getAsJsonObject().get("pages").getAsJsonObject().get(id).getAsJsonObject().get("fullurl")).replaceAll("\"", "");
+		Elemental.cache.put(id, value);
+		
+		return value;
 	}
 
 	private static HttpURLConnection getConnection(URL url) throws Exception{

@@ -19,7 +19,12 @@ public enum EnumElements {
 	MAGNESUIM("Magnesium", "Mg", 25.305f, 12, 2, 3), 
 	ALUMINIUM("Aluminium", "Al", 26.9815f, 13, 13, 3), 
 	SILICON("Silicon", "Si", 20.0855f, 14, 14, 3), 
-	PHOSPHORUS("Phosphorus", "P", 30.9738f, 15, 15, 3);
+	PHOSPHORUS("Phosphorus", "P", 30.9738f, 15, 15, 3),
+	SULPHUR("Sulphur", "S", 32.065f, 16, 16, 3),
+	CHLORINE("Chlorine", "Cl", 35.453f, 17, 17, 3),
+	ARGON("Argon", "Ar", 39.948f, 18, 18, 3),
+	POTASSIUM("Potassium", "K", 39.098f, 19, 1, 4),
+	CALCIUM("Calcium", "Ca", 40.078f, 20, 2, 4);
 
 	public String name;
 	public String symbol;

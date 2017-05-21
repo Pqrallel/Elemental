@@ -1,11 +1,13 @@
 package adiitya.elemental;
 
+import adiitya.elemental.api.DataCache;
 import adiitya.elemental.cmd.ElementCommand;
 import adiitya.elemental.cmd.ElementTestCommand;
 import adiitya.elemental.cmd.ElementsCommand;
 import adiitya.elemental.cmd.FactCommand;
 import adiitya.elemental.cmd.HelpCommand;
 import adiitya.elemental.cmd.PropertyCommand;
+import adiitya.elemental.cmd.RegisterCommand;
 import adiitya.elemental.cmd.RepoCommand;
 import adiitya.elemental.cmd.TableCommand;
 import adiitya.elemental.elements.Facts;
@@ -19,9 +21,10 @@ public class Elemental {
 	private static String token;
 	public static IDiscordClient bot;
 	public static CommandHandler handler;
+	public static DataCache<String, String> cache = new DataCache<String, String>(1920000, 100);
 
 	public void start(String[] args) {
-
+		
 		bot = new ClientBuilder().withToken(token).login();
 		handler = new Discord4JHandler(bot);
 		
@@ -33,6 +36,7 @@ public class Elemental {
 		handler.registerCommand(new HelpCommand());
 		handler.registerCommand(new PropertyCommand());
 		handler.registerCommand(new RepoCommand());
+		handler.registerCommand(new RegisterCommand());
 		
 		Facts.init();
 	}

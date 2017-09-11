@@ -1,24 +1,40 @@
 package adiitya.elemental.cmd;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import adiitya.elemental.Elemental;
 import adiitya.elemental.elements.EnumElements;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
+import sx.blah.discord.handle.obj.IUser;
+import sx.blah.discord.util.MessageBuilder;
 
 public class ElementsCommand implements CommandExecutor {
 
-	@Command(aliases = { "!elements", "!els" }, usage = "!elements")
-	public String execute() {
-
+	@Command(aliases = { "!elements", "!els" }, usage = "!elements <page>")
+	public String execute(String[] args, IUser u) {
+		
 		List<EnumElements> elements = EnumElements.getElementsAsList();
+		List<String> lines = new ArrayList<String>();
 		StringBuilder b = new StringBuilder();
-
-		for (int i = 0; i < elements.size(); i++) {
-
-			b.append("``").append(elements.get(i).name).append(" (").append(elements.get(i).symbol).append(")``\n");
+				
+		for (EnumElements e : elements)
+			lines.add(String.format("``%s (%s)``\n", e.name, e.symbol));
+		
+		for (int i = 0; i < lines.size(); i++) {
+			
+			if (i == lines.size() / 2) {
+				
+				new MessageBuilder(Elemental.bot).appendContent(b.toString()).withChannel(u.getOrCreatePMChannel()).build();
+				b = new StringBuilder();
+			}
+			
+			b.append(lines.get(i));
 		}
-
-		return "All registered elements:\n" + b.toString();
+		
+		new MessageBuilder(Elemental.bot).appendContent(b.toString()).withChannel(u.getOrCreatePMChannel()).build();
+		
+		return "The list of elements has been sent to your DMs!";
 	}
 }

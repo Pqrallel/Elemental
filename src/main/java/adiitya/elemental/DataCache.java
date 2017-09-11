@@ -1,22 +1,19 @@
-package adiitya.elemental.api;
+package adiitya.elemental;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
-import org.apache.commons.collections4.MapIterator;
-import org.apache.commons.collections4.map.LRUMap;
 
 public class DataCache<K, T> {
 
-	@SuppressWarnings("rawtypes")
-	private LRUMap cacheMap;
+	private HashMap<String, CachableItem> cacheMap;
 	private long liveTime;
 	
-	@SuppressWarnings("rawtypes")
 	public DataCache(long timeToLive, int maxItems) {
 		
 		this.liveTime = timeToLive;
-		cacheMap = new LRUMap(maxItems);
+		cacheMap = new HashMap<String, CachableItem>(maxItems);
 		
 		if (timeToLive > 0) {
 			
@@ -52,47 +49,45 @@ public class DataCache<K, T> {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void put(K key, T value) {
+	public void put(String key, String value) {
 		
 		synchronized (cacheMap) {
 			
 			System.out.println("Caching " + value + " with key " + key);
-			cacheMap.put(key, new CacheObject(value));
+			cacheMap.put(key, new CachableItem(value));
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public T get(K key) {
+	public String get(String key) {
 		
 		synchronized (cacheMap) {
 			
-			CacheObject o = (DataCache<K, T>.CacheObject) cacheMap.get(key);
+			CachableItem o = (DataCache<K, T>.CachableItem) cacheMap.get(key);
 
 			if (o != null)
 				o.lastAccessed = System.currentTimeMillis();
 			
-			return o == null ? (T) null : o.value;
+			return o == null ? (String) null : o.value;
 		}
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	public void update() {
 		
 		List<K> keys = null;
 		
 		synchronized (cacheMap) {
 			
-			MapIterator i = cacheMap.mapIterator();
+			Iterator<String> i = cacheMap.keySet().iterator();
 			
 			keys = new ArrayList<K>((cacheMap.size() / 2) + 1);
 			K key = null;
-			CacheObject o = null;
+			CachableItem o = null;
 			
 			while (i.hasNext()) {
 				
 				key = (K) i.next();
-				o = (CacheObject) i.getValue();
+				o = new CachableItem(i.next());
 				
 				if (o != null && System.currentTimeMillis() > (liveTime + o.lastAccessed))
 					keys.add(key);
@@ -110,12 +105,12 @@ public class DataCache<K, T> {
 		}
 	}
 	
-	protected class CacheObject {
+	protected class CachableItem {
 		
 		public long lastAccessed = System.currentTimeMillis();
-		public T value;
+		public String value;
 		
-		public CacheObject(T value) {
+		public CachableItem(String value) {
 			
 			this.value = value;
 		}

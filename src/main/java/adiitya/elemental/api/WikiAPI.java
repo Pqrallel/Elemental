@@ -8,13 +8,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import adiitya.elemental.Elemental;
-import sx.blah.discord.handle.obj.IChannel;
 
 public class WikiAPI {
 
 	static JsonParser parser = new JsonParser();
 	
-	public static String requestPageId(String title, IChannel c) throws Exception {
+	public static String requestPageId(String title) throws Exception {
 
 		if (Elemental.cache.containsKey(title)) {
 			

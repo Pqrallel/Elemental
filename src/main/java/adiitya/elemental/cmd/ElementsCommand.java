@@ -13,10 +13,10 @@ import sx.blah.discord.util.MessageBuilder;
 public class ElementsCommand implements CommandExecutor {
 
 	@Command(aliases = { "!elements", "!els" }, usage = "!elements <page>")
-	public String execute(String[] args, IUser u) {
+	public String execute(IUser u) {
 		
 		List<EnumElements> elements = EnumElements.getElementsAsList();
-		List<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<>();
 		StringBuilder b = new StringBuilder();
 				
 		for (EnumElements e : elements)

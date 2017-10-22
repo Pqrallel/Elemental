@@ -16,7 +16,7 @@ public class HelpCommand implements CommandExecutor {
 		for (SimpleCommand c : Elemental.handler.getCommands()) {
 			
 			for (int i = 0; i < c.getCommandAnnotation().aliases().length; i++)
-				sb.append(c.getCommandAnnotation().aliases()[i] + " - Usage: " + c.getCommandAnnotation().usage() + "\n");
+				sb.append(c.getCommandAnnotation().aliases()[i]).append(" - Usage: ").append(c.getCommandAnnotation().usage()).append("\n");
 		}
 		
 		s = sb.toString();

@@ -24,7 +24,7 @@ public class PropertyCommand implements CommandExecutor {
 			element = EnumElements.getElementName(element);
 		else if (!element.equalsIgnoreCase("all") && !element.equalsIgnoreCase("list"))
 			return element + " is not an element!";
-		
+
 		if (element.equalsIgnoreCase("all")) {
 
 			if (args.length < 2)
@@ -32,13 +32,13 @@ public class PropertyCommand implements CommandExecutor {
 			
 			if (property.equalsIgnoreCase(ATOMIC_NUMBER))
 				for (EnumElements e : EnumElements.getElementsAsList())
-					b.append("``" + e.name + " (" + e.symbol + "): " + e.number + "``\n");
+					b.append("``").append(e.name).append(" (").append(e.symbol).append("): ").append(e.number).append("``\n");
 			else if (property.equalsIgnoreCase(ATOMIC_WEIGHT))
 				for (EnumElements e : EnumElements.getElementsAsList())
-					b.append("``" + e.name + " (" + e.symbol + "): " + e.weight + "``\n");
+					b.append("``").append(e.name).append(" (").append(e.symbol).append("): ").append(e.weight).append("``\n");
 			else if (property.equalsIgnoreCase(PERIOD))
 				for (EnumElements e : EnumElements.getElementsAsList())
-					b.append("``" + e.name + " (" + e.symbol + "): " + e.period + "``\n");
+					b.append("``").append(e.name).append(" (").append(e.symbol).append("): ").append(e.period).append("``\n");
 			else 
 				return property + " is not a valid property. Do ``!property list`` to see a list of properties!";
 		} else if (element.equalsIgnoreCase("list")) {

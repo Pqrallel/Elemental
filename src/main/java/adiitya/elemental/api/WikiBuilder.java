@@ -16,18 +16,13 @@ public class WikiBuilder {
 
 	public WikiBuilder addModule(Module module) {
 
-		b.append(module.name + "=" + module.value + "&");
+		b.append(module.name).append("=").append(module.value).append("&");
 		return this;
 	}
 
 	public URL buildURL() throws MalformedURLException {
 
 		return new URL(b.toString().substring(0, b.length() - 1));
-	}
-
-	public URI buildURI() throws URISyntaxException {
-
-		return new URI(b.toString().substring(0, b.length() - 1));
 	}
 
 	class Module {

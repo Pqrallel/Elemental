@@ -155,7 +155,7 @@ public enum EnumElements {
 			if (e.name.equalsIgnoreCase(name))
 				return e;
 
-		return (EnumElements) null;
+		return null;
 	}
 
 	public static EnumElements getElementBySymbol(String name) {
@@ -164,7 +164,7 @@ public enum EnumElements {
 			if (e.symbol.equalsIgnoreCase(name))
 				return e;
 
-		return (EnumElements) null;
+		return null;
 	}
 
 	public static List<EnumElements> getElementsAsList() {
@@ -176,14 +176,8 @@ public enum EnumElements {
 
 		int type = getType(name);
 
-		if (type == TYPE_INVALID)
-			return false;
-		else if (type == TYPE_SYMBOL)
-			return true;
-		else if (type == TYPE_NAME)
-			return true;
+		return type != TYPE_INVALID && (type == TYPE_SYMBOL || type == TYPE_NAME);
 
-		return false;
 	}
 
 	/**

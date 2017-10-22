@@ -20,7 +20,7 @@ import com.google.gson.JsonObject;
 
 public class Facts {
 
-	private static Map<String, List<String>> facts = new HashMap<String, List<String>>();
+	private static Map<String, List<String>> facts = new HashMap<>();
 	private static JsonObject root;
 
 	public static void load() {
@@ -29,7 +29,7 @@ public class Facts {
 
 		for (EnumElements e : EnumElements.getElementsAsList()) {
 
-			List<String> l = new ArrayList<String>();
+			List<String> l = new ArrayList<>();
 			String group = e.group < 0 ? "unknown" : "" + e.group;
 			String weight = e.weight < 0f ? "unknown" : "" + e.weight;
 
@@ -50,7 +50,7 @@ public class Facts {
 		StringBuilder b = new StringBuilder();
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		BufferedReader br = null;
+		BufferedReader br;
 		File f = new File("facts.json");
 
 		try {

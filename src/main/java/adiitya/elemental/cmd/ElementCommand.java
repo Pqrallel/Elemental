@@ -17,16 +17,16 @@ public class ElementCommand implements CommandExecutor {
 		boolean debug = false;
 		
 		if (args.length >= 2) {
-			
-			for (int i = 0; i < args.length; i++) {
-				
-				if (args[i].equalsIgnoreCase("-debug") || args[i].equalsIgnoreCase("--d"))
+
+			for (String arg : args) {
+
+				if (arg.equalsIgnoreCase("-debug") || arg.equalsIgnoreCase("--d"))
 					debug = true;
 			}
 		}
 
 		String url = "";
-		String id = "";
+		String id;
 		String element = EnumElements.getElementName(args[0]);
 		long start = System.currentTimeMillis();
 		long end = 0;

@@ -11,7 +11,7 @@ import adiitya.elemental.Elemental;
 
 public class WikiAPI {
 
-	static JsonParser parser = new JsonParser();
+	private static JsonParser parser = new JsonParser();
 	
 	public static String requestPageId(String title) throws Exception {
 

@@ -21,9 +21,12 @@ public class AddFactCommand implements CommandExecutor {
 		
 		EnumElements e = EnumElements.getElementByName(EnumElements.getElementName(args[0]));
 		StringBuilder b = new StringBuilder();
+
+		if (e == null)
+			return args[0] + " is not a valid element!";
 		
 		for (int i = 1; i < args.length; i++)
-			b.append(args[i] + " ");
+			b.append(args[i]).append(" ");
 		
 		return Facts.addFact(e, b.toString().substring(0, b.length()-1)) ? "Fact successfully registered! ``!freload`` to reload facts!" : "Could not register your fact!";
 	}

@@ -1,3 +1,4 @@
+
 package adiitya.elemental;
 
 import adiitya.elemental.cmd.*;
@@ -62,5 +63,6 @@ public class Elemental {
 		}
 
 		new Elemental().start();
+		client.User.setGame('!help for help');
 	}
 }
